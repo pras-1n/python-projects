@@ -77,4 +77,31 @@ class Store:
         print(f"Total Transactions: {transactions_processed}")
         print(f"Total Revenue: ${total_revenue:.2f}")
 
+# main execution script
+if __name__ == "__main__":
+    # creating a store object
+    my_store = Store()
+
+    #creating product objects
+    p1 = Product(product_id="T001", name="Wireless Mouse", price=25.00, stock_level=10)
+    p2 = Product(product_id="T002", name="Mechanical Keyboard", price=85.00, stock_level=3)
+
+    my_store.add_product(p1, category="Electronics")
+    my_store.add_product(p2, category="Electronics")
+
+    print('\n--- Processing Sales ---')
+    my_store.sell_product("T001", 2)
+
+    my_store.sell_product("T002", 5)
+
+    my_store.sell_product("X999", 1)
+
+    try:
+        my_store.sell_product("T001", -3)
+    except ValueError as e:
+        print("Caught an error in main script: {e}")
+
+    my_store.show_inventory()
+    my_store.run_daily_summary()
+
 
